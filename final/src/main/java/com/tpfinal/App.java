@@ -1,9 +1,7 @@
 package com.tpfinal;
 
 import com.tpfinal.bootstrap.BootstrapData;
-import com.tpfinal.services.equipos.ServicioEquipo;
-import com.tpfinal.services.equipos.impl.ServicioEquipoImpl;
-import com.tpfinal.services.gui.menu;
+import com.tpfinal.services.gui.Menu;
 
 public class App{
 
@@ -13,7 +11,7 @@ public class App{
 
         BootstrapData.initPosiciones();
 
-        menu.menuPrincipal();
+        Menu.menuPrincipal();
 
 
     }

@@ -2,7 +2,7 @@ package com.tpfinal.services.gui.menuprincipal;
 
 import com.tpfinal.services.gui.Gui;
 
-public class menuPrincipal implements Gui {
+public class MenuPrincipal implements Gui {
     @Override
     public void limpiarPantalla() {
         System.out.println("");

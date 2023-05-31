@@ -1,9 +1,8 @@
 package com.tpfinal.services.gui.menuprincipal;
 
-import com.tpfinal.domain.Equipo;
 import com.tpfinal.services.gui.Gui;
 
-public class menuIntegrante implements Gui {
+public class MenuIntegrante implements Gui {
     @Override
     public void limpiarPantalla() {
         System.out.println("");
