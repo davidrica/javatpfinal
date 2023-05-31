@@ -26,10 +26,10 @@ public class menu {
     public static final ServicioIntegrante servicioIntegrante = new ServicioIntegranteImpl();
 
     public static List<Equipo> equipos;
-    public static List<Integrante> integrantes;
+
     public static void menuPrincipal(){
         equipos = new ArrayList<Equipo>();
-        integrantes = new ArrayList<Integrante>();
+
 
         Boolean seguir =true;
 
@@ -108,8 +108,7 @@ public class menu {
                         System.out.println("");
                         Integrante integrante = servicioIntegrante.crearIntegrante();
                         if (integrante != null){
-                            integrante.setEquipo(equipo);
-                            integrantes.add(integrante);
+                            equipo.addIntegrante(integrante);
 
                         }else{
 
@@ -138,6 +137,10 @@ public class menu {
         if (equipos != null) {
             for (Equipo equipo : equipos) {
                 System.out.println(equipo.toString());
+                for (Integrante integrante: equipo.getListaIntegrantes()) {
+                    System.out.println(integrante.toString());
+
+                }
             }
         }else{
             System.out.println("Sin Datos");

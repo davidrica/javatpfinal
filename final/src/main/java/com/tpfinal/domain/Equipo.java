@@ -31,6 +31,12 @@ public class Equipo {
        this.fechaCreacion=fechaCreacion;
     }
 
+    public void addIntegrante(Integrante integrante){
+        this.listaIntegrantes.add(integrante);
+    }
+    public List<Integrante> getListaIntegrantes(){
+        return listaIntegrantes;
+    }
     @Override
     public String toString(){
         return "Equipo{" +

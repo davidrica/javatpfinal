@@ -39,4 +39,13 @@ public class Integrante {
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
+
+    @Override
+    public String toString() {
+        return "Integrante{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", equipo=" + equipo +
+                '}';
+    }
 }
