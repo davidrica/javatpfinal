@@ -4,4 +4,7 @@ public interface Gui {
     void limpiarPantalla();
     void menuPrincipal();
     void menuEquipos();
+
+    void menuIntegrante();
+
 }

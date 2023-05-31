@@ -1,11 +1,16 @@
 package com.tpfinal.services.gui;
 
 import com.tpfinal.domain.Equipo;
+import com.tpfinal.domain.Integrante;
 import com.tpfinal.services.entrada.console.impl.InputService;
 import com.tpfinal.services.equipos.ServicioEquipo;
 import com.tpfinal.services.equipos.impl.ServicioEquipoImpl;
+import com.tpfinal.services.gui.menuprincipal.menuIntegrante;
 import com.tpfinal.services.gui.menuprincipal.menuPrincipal;
 import com.tpfinal.services.gui.menuprincipal.menuEquipos;
+import com.tpfinal.services.integrante.ServicioIntegrante;
+import com.tpfinal.services.integrante.impl.ServicioIntegranteImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +19,18 @@ public class menu {
 
     private static final menuPrincipal mPrincipal = new menuPrincipal();
     private static final menuEquipos mEquipo = new menuEquipos();
+    private static final menuIntegrante mIntegrante = new menuIntegrante();
+
 
     public static final ServicioEquipo servicioEquipo = new ServicioEquipoImpl();
+    public static final ServicioIntegrante servicioIntegrante = new ServicioIntegranteImpl();
 
     public static List<Equipo> equipos;
+    public static List<Integrante> integrantes;
     public static void menuPrincipal(){
+        equipos = new ArrayList<Equipo>();
+        integrantes = new ArrayList<Integrante>();
+
         Boolean seguir =true;
 
         InputService.createScanner();
@@ -45,7 +57,7 @@ public class menu {
     }
     private static void menuEquipos(){
 
-        equipos = new ArrayList<Equipo>();
+
 
         Boolean seguirEquipos =true;
         while (seguirEquipos){
@@ -76,11 +88,50 @@ public class menu {
             equipos.add(equipo);
             System.out.println("Equipo agregado...");
 
+            boolean Seguir =true;
+
+
+            do {
+
+                System.out.println("Desea Agregar integrantes S/N: ");
+
+
+                String agregarIntegrante = InputService.scanner.nextLine();
+                switch (agregarIntegrante) {
+                    case "S":
+                    case "s":
+                        mIntegrante.limpiarPantalla();
+
+                        System.out.println("Bienvenido a la app : Fut5App");
+                        System.out.print("Crear Integrante para el equipo: ");
+                        System.out.println(equipo.getNombre());
+                        System.out.println("");
+                        Integrante integrante = servicioIntegrante.crearIntegrante();
+                        if (integrante != null){
+                            integrante.setEquipo(equipo);
+                            integrantes.add(integrante);
+
+                        }else{
+
+                        }
+                        break;
+                    default:
+                        Seguir=false;
+                }
+
+
+            }while (Seguir);
+
+
+
+
         }else{
             System.out.println("Error en carga");
+            System.out.println("Presione una tecla para continuar...");
+            String opcionEquipos = InputService.scanner.nextLine();
+
         }
-        System.out.println("Presione una tecla para continuar...");
-        String opcionEquipos = InputService.scanner.nextLine();
+
     }
     public static void ListadoEquipos(){
 
@@ -95,4 +146,7 @@ public class menu {
         System.out.println("Presione una tecla para continuar...");
         String opcionEquipos = InputService.scanner.nextLine();
     }
+
+    //seccion equipos
+
 }

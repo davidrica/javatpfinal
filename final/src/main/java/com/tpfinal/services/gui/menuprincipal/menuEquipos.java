@@ -34,5 +34,10 @@ public class menuEquipos implements Gui {
         System.out.print("Opcion:  ");
     }
 
+    @Override
+    public void menuIntegrante() {
+
+    }
+
 
 }

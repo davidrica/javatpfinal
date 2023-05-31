@@ -33,5 +33,10 @@ public class menuPrincipal implements Gui {
     public void menuEquipos() {
        // menuEquipos.menuEquipos();
     }
+
+    @Override
+    public void menuIntegrante() {
+
+    }
 }
 
