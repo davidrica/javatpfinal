@@ -40,5 +40,14 @@ public class MenuEquipos implements GuiEquipos {
         System.out.println("=            -  Crear Nuevo Equipo ");
     }
 
+    @Override
+    public void menuBuscarEquipos() {
+        limpiarPantalla();
+        System.out.println("=============Bienvenido a la app : Fut5App");
+        System.out.println("=");
+        System.out.println("=            Menu de Equipos");
+        System.out.println("=            -  Buscar equipos ");
+    }
+
 
 }

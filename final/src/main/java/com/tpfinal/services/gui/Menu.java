@@ -18,7 +18,7 @@ import java.util.List;
 public class Menu {
 
 
-    private static final MenuIntegrante mIntegrante = new MenuIntegrante();
+
 
 
     public static final ServicioEquipo servicioEquipo = new ServicioEquipoImpl();
@@ -72,6 +72,10 @@ public class Menu {
                 case "1":
 
                     BootstrapData.equipos.add(servicioEquipo.crearEquipo());
+                    break;
+                case "3":
+
+                     servicioEquipo.buscarEquipos (BootstrapData.equipos);
                     break;
                 case "4":
                     servicioEquipo.listadoEquipos(BootstrapData.equipos);

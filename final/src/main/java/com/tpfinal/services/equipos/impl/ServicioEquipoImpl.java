@@ -11,8 +11,10 @@ import com.tpfinal.services.integrante.impl.ServicioIntegranteImpl;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ServicioEquipoImpl implements ServicioEquipo {
     private static final MenuIntegrante mIntegrante = new MenuIntegrante();
@@ -24,49 +26,39 @@ public class ServicioEquipoImpl implements ServicioEquipo {
 
         Equipo equiponuevo = new Equipo();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
 
         equiponuevo.setId(UUID.randomUUID());
-        System.out.print("=    INGRESE EL NOMBRE DEL EQUIPO: ");
-        equiponuevo.setNombre(InputService.scanner.nextLine());
 
-        System.out.print("=    INGRESE LA FECHA DE CREACION DD/MM/AAAA: ");
-        equiponuevo.setFechaCreacion(LocalDate.parse(InputService.getScanner().nextLine(),formatter));
+
+        equiponuevo.setNombre(InputService.entradaCadena("=    INGRESE EL NOMBRE DEL EQUIPO: "));
+
+        equiponuevo.setFechaCreacion( InputService.entradaFecha("=    INGRESE LA FECHA DE CREACION DD/MM/AAAA: "));
+
 
 
 
         if (equiponuevo!=null) {
             //validar equipo
 
-            System.out.println("=    Equipo agregado...");
+            System.out.println("=    Equipo agregado correctamente...");
 
             boolean Seguir =true;
 
 
             do {
 
-                System.out.print("=    Desea Agregar integrantes S/N: ");
+                System.out.print("=    Desea Agregar integrantes? S/N: ");
 
 
                 String agregarIntegrante = InputService.scanner.nextLine();
                 switch (agregarIntegrante) {
                     case "S":
                     case "s":
-                        //mIntegrante.limpiarPantalla();
 
-                        System.out.println("Bienvenido a la app : Fut5App");
-                        System.out.print("Crear Integrante para el equipo: ");
-                        System.out.println(equiponuevo.getNombre());
-                        System.out.println("");
-                        Integrante integrante = servicioIntegrante.crearIntegrante();
-                        if (integrante != null){
-                            integrante.setEquipo(equiponuevo);
-                            equiponuevo.addIntegrante(integrante);
 
-                        }else{
+                        Integrante integrante = servicioIntegrante.crearIntegrante(equiponuevo);
 
-                        }
                         break;
                     default:
                         Seguir=false;
@@ -79,8 +71,8 @@ public class ServicioEquipoImpl implements ServicioEquipo {
 
 
         }else{
-            System.out.println("Error en carga");
-            System.out.println("Presione una tecla para continuar...");
+            System.out.println("=     Error en carga");
+            System.out.println("=     Presione ENTER para continuar...");
             String opcionEquipos = InputService.scanner.nextLine();
 
         }
@@ -99,12 +91,23 @@ public class ServicioEquipoImpl implements ServicioEquipo {
                 }
             }
         }else{
-            System.out.println("Sin Datos");
+            System.out.println("=     Sin Datos");
         }
-        System.out.println("");
-        System.out.println("Presione una tecla para continuar...");
+        System.out.println("=");
+        System.out.println("=     Presione ENTER para continuar...");
         String opcionEquipos = InputService.scanner.nextLine();
     }
 
 
+    public List<Equipo> buscarEquipos(List<Equipo> equipos){
+        String s= InputService.entradaCadena("=    INGRESE EL EQUIPO A BUSCAR: ");
+        List<Equipo>  retorno=new ArrayList<Equipo> ();;
+        if (equipos != null) {
+            retorno = equipos.stream().filter(equipo -> equipo.getNombre().contains(s)  ).collect(Collectors.toList()); ;
+        }else{
+            System.out.println("=     Sin Datos");
+        }
+        listadoEquipos(retorno);
+        return  retorno;
+    }
 }

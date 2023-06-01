@@ -6,4 +6,5 @@ public interface InputServiceInterface {
     void createScanner();
     Scanner getScanner();
     void closeScanner();
+
 }

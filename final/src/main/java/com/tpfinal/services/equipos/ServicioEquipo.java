@@ -9,4 +9,5 @@ public interface ServicioEquipo {
 
     void listadoEquipos(List<Equipo> equipos);
 
+    List<Equipo> buscarEquipos(List<Equipo> equipos);
 }

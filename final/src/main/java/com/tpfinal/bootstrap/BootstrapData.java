@@ -4,6 +4,7 @@ import com.tpfinal.bootstrap.constantes.DescripcionesPosiciones;
 import com.tpfinal.domain.Equipo;
 import com.tpfinal.domain.Posicion;
 import com.tpfinal.services.gui.menuprincipal.MenuEquipos;
+import com.tpfinal.services.gui.menuprincipal.MenuIntegrante;
 import com.tpfinal.services.gui.menuprincipal.MenuPrincipal;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class BootstrapData {
 
     public static final MenuPrincipal mPrincipal = new MenuPrincipal();
     public static final MenuEquipos mEquipo = new MenuEquipos();
+    public static final MenuIntegrante mIntegrante = new MenuIntegrante();
     public static void initData() {
         //datos vacios
         posiciones = new HashMap();
