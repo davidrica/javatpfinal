@@ -1,10 +1,12 @@
 package com.tpfinal.services.gui;
 
 public interface Gui {
-    void limpiarPantalla();
+    //void limpiarPantalla();
     void menuPrincipal();
-    void menuEquipos();
 
-    void menuIntegrante();
+
+    //void menuEquipos();
+
+    //void menuIntegrante();
 
 }

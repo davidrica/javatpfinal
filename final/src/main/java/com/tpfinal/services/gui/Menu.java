@@ -1,5 +1,6 @@
 package com.tpfinal.services.gui;
 
+import com.tpfinal.bootstrap.BootstrapData;
 import com.tpfinal.domain.Equipo;
 import com.tpfinal.services.entrada.console.impl.InputService;
 import com.tpfinal.services.equipos.ServicioEquipo;
@@ -16,18 +17,17 @@ import java.util.List;
 
 public class Menu {
 
-    private static final MenuPrincipal mPrincipal = new MenuPrincipal();
-    private static final MenuEquipos mEquipo = new MenuEquipos();
+
     private static final MenuIntegrante mIntegrante = new MenuIntegrante();
 
 
     public static final ServicioEquipo servicioEquipo = new ServicioEquipoImpl();
     public static final ServicioIntegrante servicioIntegrante = new ServicioIntegranteImpl();
 
-    public static List<Equipo> equipos;
+
 
     public static void menuPrincipal(){
-        equipos = new ArrayList<Equipo>();
+
 
 
         Boolean seguir =true;
@@ -35,15 +35,15 @@ public class Menu {
         InputService.createScanner();
 
         while (seguir){
-            mPrincipal.limpiarPantalla();
-            mPrincipal.menuPrincipal();
+
+            BootstrapData.mPrincipal.menuPrincipal();
 
 
             String opcion = InputService.scanner.nextLine();
 
             switch (opcion){
                 case "0":
-                    seguir=false;
+                    seguir = false;
                     break;
                 case"1":
                     menuEquipos();
@@ -61,19 +61,20 @@ public class Menu {
         Boolean seguirEquipos =true;
         while (seguirEquipos){
 
-            mEquipo.limpiarPantalla();
-            mEquipo.menuEquipos();
+
+            BootstrapData.mEquipo.menuEquipos();
             String opcionEquipos = InputService.scanner.nextLine();
 
             switch (opcionEquipos){
                 case "0":
-                    seguirEquipos=false;
+                    seguirEquipos = false;
                     break;
                 case "1":
-                    equipos.add(servicioEquipo.crearEquipo());
+
+                    BootstrapData.equipos.add(servicioEquipo.crearEquipo());
                     break;
                 case "4":
-                    servicioEquipo.listadoEquipos(equipos);
+                    servicioEquipo.listadoEquipos(BootstrapData.equipos);
                     break;
             }
         }

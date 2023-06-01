@@ -9,7 +9,7 @@ public class App{
 
     public static void main( String[] args )  {
 
-        BootstrapData.initPosiciones();
+        BootstrapData.initData();
 
         Menu.menuPrincipal();
 

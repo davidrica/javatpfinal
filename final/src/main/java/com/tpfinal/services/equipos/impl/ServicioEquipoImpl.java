@@ -1,5 +1,6 @@
 package com.tpfinal.services.equipos.impl;
 
+import com.tpfinal.bootstrap.BootstrapData;
 import com.tpfinal.domain.Equipo;
 import com.tpfinal.domain.Integrante;
 import com.tpfinal.services.entrada.console.impl.InputService;
@@ -18,38 +19,41 @@ public class ServicioEquipoImpl implements ServicioEquipo {
     public static final ServicioIntegrante servicioIntegrante = new ServicioIntegranteImpl();
     @Override
     public Equipo crearEquipo() {
+
+        BootstrapData.mEquipo.menuCrearEquipos();
+
         Equipo equiponuevo = new Equipo();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
 
         equiponuevo.setId(UUID.randomUUID());
-        System.out.println("INGRESE EL NOMBRE DEL EQUIPO: ");
+        System.out.print("=    INGRESE EL NOMBRE DEL EQUIPO: ");
         equiponuevo.setNombre(InputService.scanner.nextLine());
 
-        //System.out.println("INGRESE LA FECHA DE CREACION DD/MM/AAAA: ");
-        //equiponuevo.setFechaCreacion(LocalDate.parse(InputService.getScanner().nextLine(),formatter));
+        System.out.print("=    INGRESE LA FECHA DE CREACION DD/MM/AAAA: ");
+        equiponuevo.setFechaCreacion(LocalDate.parse(InputService.getScanner().nextLine(),formatter));
 
 
 
         if (equiponuevo!=null) {
             //validar equipo
 
-            System.out.println("Equipo agregado...");
+            System.out.println("=    Equipo agregado...");
 
             boolean Seguir =true;
 
 
             do {
 
-                System.out.println("Desea Agregar integrantes S/N: ");
+                System.out.print("=    Desea Agregar integrantes S/N: ");
 
 
                 String agregarIntegrante = InputService.scanner.nextLine();
                 switch (agregarIntegrante) {
                     case "S":
                     case "s":
-                        mIntegrante.limpiarPantalla();
+                        //mIntegrante.limpiarPantalla();
 
                         System.out.println("Bienvenido a la app : Fut5App");
                         System.out.print("Crear Integrante para el equipo: ");
