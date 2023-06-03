@@ -100,6 +100,8 @@ public class ServicioEquipoImpl implements ServicioEquipo {
 
 
     public List<Equipo> buscarEquipos(List<Equipo> equipos){
+        BootstrapData.mEquipo.menuBuscarEquipos();
+
         String s= InputService.entradaCadena("=    INGRESE EL EQUIPO A BUSCAR: ");
         List<Equipo>  retorno=new ArrayList<Equipo> ();;
         if (equipos != null) {
@@ -107,7 +109,7 @@ public class ServicioEquipoImpl implements ServicioEquipo {
         }else{
             System.out.println("=     Sin Datos");
         }
-        listadoEquipos(retorno);
+        //listadoEquipos(retorno);
         return  retorno;
     }
 }

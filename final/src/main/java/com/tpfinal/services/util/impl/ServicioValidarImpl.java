@@ -28,19 +28,19 @@ public class ServicioValidarImpl implements ServicioValidar {
     @Override
     public Boolean validarFecha(String dato) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        Boolean seguir = false;
+        Boolean seguir = true;
         try {
             if (dato.length() <= 0){
                 System.out.print("=    Ingreso incorrecto: ");
                 System.out.println(dato);
-                return true;
+                return false;
             }
             LocalDate.parse(dato,formatter);
 
         }catch(DateTimeParseException e){
-            System.out.print("=    Ingreso incorrecto: ");
+            System.out.print("=   Ingreso incorrecto: ");
             System.out.println(dato);
-
+            return false;
         }
 
 

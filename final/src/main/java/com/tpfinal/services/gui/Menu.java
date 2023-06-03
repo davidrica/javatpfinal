@@ -74,8 +74,10 @@ public class Menu {
                     BootstrapData.equipos.add(servicioEquipo.crearEquipo());
                     break;
                 case "3":
+                    servicioEquipo.listadoEquipos(
+                            servicioEquipo.buscarEquipos (BootstrapData.equipos)
+                    );
 
-                     servicioEquipo.buscarEquipos (BootstrapData.equipos);
                     break;
                 case "4":
                     servicioEquipo.listadoEquipos(BootstrapData.equipos);

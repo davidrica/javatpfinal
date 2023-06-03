@@ -38,11 +38,16 @@ public class InputService  {
             System.out.print(prompt);
             entrada =InputService.getScanner().nextLine();
             seguir=validar.validarFecha(entrada);
+
             if (seguir){
                 retorno =LocalDate.parse(entrada,formatter);
-
+                seguir=false;
+            }else{
+                seguir=true;
+                if (entrada.contentEquals("N")){
+                    seguir=false;
+                }
             }
-
         }
         while (seguir);
 
