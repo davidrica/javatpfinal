@@ -13,6 +13,8 @@ import com.tpfinal.services.gui.menuprincipal.MenuPrincipal;
 import com.tpfinal.services.gui.menuprincipal.MenuEquipos;
 import com.tpfinal.services.integrante.ServicioIntegrante;
 import com.tpfinal.services.integrante.impl.ServicioIntegranteImpl;
+import com.tpfinal.services.salida.file.ServicioExportarArchivo;
+import com.tpfinal.services.salida.file.impl.ServicioExportarArchivoImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,9 +30,9 @@ public class Menu {
     public static final ServicioEquipo servicioEquipo = new ServicioEquipoImpl();
     public static final ServicioIntegrante servicioIntegrante = new ServicioIntegranteImpl();
     public static final ServicioImportarArchivo servicioImportar = new ServicioImportarArchivoImpl();
+    public static final ServicioExportarArchivo servicioExportar = new ServicioExportarArchivoImpl();
 
-
-    public static void menuPrincipal(){
+    public static void menuPrincipal() throws IOException {
 
 
 
@@ -51,6 +53,9 @@ public class Menu {
                     break;
                 case"1":
                     menuEquipos();
+                    break;
+                case"2":
+                    menuIntegrante();
                     break;
                 case"5":
                     menuIE();
@@ -82,13 +87,26 @@ public class Menu {
 
                     BootstrapData.equipos.add(servicioEquipo.crearEquipo());
                     break;
+                case "2":
+                    BootstrapData.equipos.remove(
+                            servicioEquipo.eliminarEquipo (BootstrapData.equipos)
+                    );
+
+                    break;
                 case "3":
-                    servicioEquipo.listadoEquipos(
+
+                    servicioEquipo.consultaEquipo(
                             servicioEquipo.buscarEquipos (BootstrapData.equipos)
                     );
 
                     break;
                 case "4":
+                    servicioEquipo.listadoEquipos(
+                            servicioEquipo.buscarEquipos (BootstrapData.equipos)
+                    );
+
+                    break;
+                case "5":
                     servicioEquipo.listadoEquipos(BootstrapData.equipos);
                     break;
             }
@@ -96,8 +114,32 @@ public class Menu {
 
     }
 
+    private static void menuIntegrante(){
+        Boolean seguir =true;
+        while (seguir){
 
-    private static void menuIE() {
+
+            BootstrapData.mIntegrante.menuIntegrante();
+            String opcionEquipos = InputService.scanner.nextLine();
+
+            switch (opcionEquipos){
+                case "0":
+                    seguir = false;
+                    break;
+                case "1":
+                    servicioIntegrante.listadoJugadores(
+                            servicioIntegrante.buscarJugadores()
+                    );
+
+                    break;
+                case "2":
+                    //buscar entrenador;
+                    break;
+
+            }
+        }
+    }
+    private static void menuIE() throws IOException {
 
         Boolean seguir =true;
         while (seguir){
@@ -121,6 +163,15 @@ public class Menu {
                 case "3":
                     servicioImportar.loadEntrenadoresByFile();
 
+                    break;
+                case "4":
+                    servicioExportar.exportarEquipo();
+                    break;
+                case "5":
+                    servicioExportar.exportarJugadores();
+                    break;
+                case "6":
+                    servicioExportar.exportarEntrenadores();
                     break;
             }
         }

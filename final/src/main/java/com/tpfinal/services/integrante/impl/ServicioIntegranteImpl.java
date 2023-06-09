@@ -6,7 +6,10 @@ import com.tpfinal.services.entrada.console.impl.InputService;
 import com.tpfinal.services.integrante.ServicioIntegrante;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class ServicioIntegranteImpl implements ServicioIntegrante {
     private Integrante cargarNombreApellido(Equipo equiponuevo){
@@ -54,4 +57,50 @@ public class ServicioIntegranteImpl implements ServicioIntegrante {
         entrenador.setEdad(InputService.entradaInt("=    INGRESE LA EDAD: "));
         return entrenador;
     }
+
+    @Override
+    public List<Jugador> buscarJugadores() {
+        List<Jugador>  retorno=new ArrayList<Jugador>();
+        List<Jugador>  jugadores=BootstrapData.ObtenerJugadores();
+
+        BootstrapData.mIntegrante.menuBuscarJugador();
+
+        String s= InputService.entradaCadena("=    INGRESE EL NOMBRE DEL JUGADOR A BUSCAR: ");
+
+        if (jugadores != null) {
+            System.out.println("=     BUSCANDO....");
+            retorno = jugadores.stream().filter(jugador ->
+                    jugador.getNombre().contains(s)).collect(Collectors.toList()) ;
+        }else{
+            System.out.println("=     Sin Datos");
+        }
+
+        return retorno;
+    }
+
+    @Override
+    public void listadoJugadores(List<Jugador> jugadores) {
+        //encabezado
+        System.out.println("Nombre Apellido      | Posicion | Capitan | Equipo ");
+
+        if (jugadores != null) {
+            for (Jugador jugador : jugadores) {
+                System.out.printf("%-20S | %-8S | %-7S | %-20S \n",
+                        jugador.getNombre()+" " +jugador.getApellido(),
+                        jugador.getPosicion().getPosicion(),
+                        jugador.isCapitan() ? "Si":"No",
+                        jugador.getEquipo().getNombre()
+                        );
+
+
+            }
+        }else{
+            System.out.println("=     Sin Datos");
+        }
+        System.out.println("=");
+        System.out.println("=     Presione ENTER para continuar...");
+        String opcionEquipos = InputService.scanner.nextLine();
+    }
+
+
 }

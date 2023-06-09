@@ -10,6 +10,7 @@ import com.tpfinal.services.entrada.console.impl.InputService;
 import com.tpfinal.services.entrada.file.ServicioImportarArchivo;
 import org.apache.commons.io.FileUtils;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -23,15 +24,9 @@ import java.util.stream.Collectors;
 public class ServicioImportarArchivoImpl implements ServicioImportarArchivo {
     private static final String path ="final/src/main/java/com/tpfinal/resources/";
     @Override
-    public List<Equipo> loadEquiposByFile() {
-
-        List<Equipo> equipos = new ArrayList<>();
+    public List<Equipo> cargarEquipos(String nombreArchivo){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-
-        String nombreArchivo= InputService.entradaCadena("=    NOMBRE DEL ARCHIVO DE EQUIPOS equipos.txt: ");
-        nombreArchivo = "final/src/main/java/com/tpfinal/resources/" + nombreArchivo;
-
-
+        List<Equipo> equipos = new ArrayList<>();
         List<String> lineas = null;
         try {
             lineas = FileUtils.readLines(new File(nombreArchivo), StandardCharsets.UTF_8);
@@ -58,21 +53,12 @@ public class ServicioImportarArchivoImpl implements ServicioImportarArchivo {
             System.out.println(e.getMessage());
 
         }
-
-
-        return equipos;
-
+        return  equipos;
     }
 
     @Override
-    public List<Jugador> loadJugadoresByFile() {
-
+    public List<Jugador> cargarJugadores(String nombreArchivo) {
         List<Jugador> jugadores = new ArrayList<>();
-
-        String nombreArchivo= InputService.entradaCadena("=    NOMBRE DEL ARCHIVO DE JUGADORES jugadores.txt: ");
-        nombreArchivo = "final/src/main/java/com/tpfinal/resources/" + nombreArchivo;
-
-
         List<String> lineas = null;
         try {
             lineas = FileUtils.readLines(new File(nombreArchivo), StandardCharsets.UTF_8);
@@ -81,6 +67,7 @@ public class ServicioImportarArchivoImpl implements ServicioImportarArchivo {
                 String[] partes = linea.split(";");
                 String nombre = partes[0];
                 String apellido = partes[1];
+
                 String cequipo = partes[2];
                 int dni = Integer.parseInt(partes[3]);
                 int altura = Integer.parseInt(partes[4]);
@@ -93,12 +80,12 @@ public class ServicioImportarArchivoImpl implements ServicioImportarArchivo {
 
                 Equipo equipo = BootstrapData.equipos.stream().filter(
                         equipo1 -> equipo1.getNombre().contains(cequipo)
-                            ).findFirst().get();
+                ).findFirst().get();
 
                 Jugador jugador =new Jugador(nombre,apellido,equipo,dni,altura,posicion, cantGol,cantPartidos, capitan, numeroCamiseta);
                 equipo.addIntegrante(jugador);
 
-                //jugadores.add(jugador);
+
 
             }
             System.out.println("=     Finalizado.");
@@ -109,18 +96,12 @@ public class ServicioImportarArchivoImpl implements ServicioImportarArchivo {
 
         }
 
-
         return jugadores;
     }
 
     @Override
-    public List<Entrenador> loadEntrenadoresByFile() {
-
+    public List<Entrenador> cargarEntrenadores(String nombreArchivo) {
         List<Entrenador> entrenadores = new ArrayList<>();
-
-        String nombreArchivo= InputService.entradaCadena("=    NOMBRE DEL ARCHIVO DE ENTRENADORES entrenadores.txt: ");
-        nombreArchivo = "final/src/main/java/com/tpfinal/resources/" + nombreArchivo;
-
 
         List<String> lineas = null;
         try {
@@ -151,6 +132,49 @@ public class ServicioImportarArchivoImpl implements ServicioImportarArchivo {
             System.out.println(e.getMessage());
 
         }
+
+        return entrenadores;
+    }
+
+    @Override
+    public List<Equipo> loadEquiposByFile() {
+
+        List<Equipo> equipos = new ArrayList<>();
+
+
+        String nombreArchivo= InputService.entradaCadena("=    NOMBRE DEL ARCHIVO DE EQUIPOS equipos.txt: ");
+        nombreArchivo =path + nombreArchivo;
+
+        equipos = cargarEquipos(nombreArchivo);
+
+
+
+        return equipos;
+
+    }
+
+    @Override
+    public List<Jugador> loadJugadoresByFile() {
+
+        List<Jugador> jugadores = new ArrayList<>();
+
+        String nombreArchivo= InputService.entradaCadena("=    NOMBRE DEL ARCHIVO DE JUGADORES jugadores.txt: ");
+        nombreArchivo = path+ nombreArchivo;
+
+        jugadores = cargarJugadores(nombreArchivo);
+
+        return jugadores;
+    }
+
+    @Override
+    public List<Entrenador> loadEntrenadoresByFile() {
+
+        List<Entrenador> entrenadores = new ArrayList<>();
+
+        String nombreArchivo= InputService.entradaCadena("=    NOMBRE DEL ARCHIVO DE ENTRENADORES entrenadores.txt: ");
+        nombreArchivo = path + nombreArchivo;
+
+        entrenadores= cargarEntrenadores(nombreArchivo);
 
 
         return entrenadores;

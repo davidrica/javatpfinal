@@ -24,8 +24,9 @@ public class MenuEquipos implements GuiEquipos {
         System.out.println("=     0 - Volver");
         System.out.println("=     1 - Crear Equipo");
         System.out.println("=     2 - Borrar Equipo");
-        System.out.println("=     3 - Buscar Equipo");
-        System.out.println("=     4 - Ver Todos los equipos");
+        System.out.println("=     3 - Buscar Equipo y ver Capitan-Entrenador");
+        System.out.println("=     4 - Buscar Equipo y ver jugadores");
+        System.out.println("=     5 - Ver Todos los equipos");
         System.out.println("");
         System.out.println("");
         System.out.print("Opcion:  ");
@@ -47,6 +48,15 @@ public class MenuEquipos implements GuiEquipos {
         System.out.println("=");
         System.out.println("=            Menu de Equipos");
         System.out.println("=            -  Buscar equipos ");
+    }
+
+    @Override
+    public void menuEliminarEquipo() {
+        limpiarPantalla();
+        System.out.println("=============Bienvenido a la app : Fut5App");
+        System.out.println("=");
+        System.out.println("=            Menu de Equipos");
+        System.out.println("=            -  Buscar equipos a eliminar");
     }
 
 

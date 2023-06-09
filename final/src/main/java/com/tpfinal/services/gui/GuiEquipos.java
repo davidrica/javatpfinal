@@ -5,4 +5,6 @@ public interface GuiEquipos {
     void menuCrearEquipos();
     void menuBuscarEquipos();
 
+    void menuEliminarEquipo();
+
 }

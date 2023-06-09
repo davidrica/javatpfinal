@@ -25,6 +25,7 @@ public class MenuIE implements GuiIE {
         System.out.println("=     3 - Importar Entrenadores -");
         System.out.println("=     4 - Exportar Equipos");
         System.out.println("=     5 - Exportar Jugadores");
+        System.out.println("=     6 - Exportar Entrenadores");
         System.out.println("");
         System.out.println("");
         System.out.print("Opcion:  ");

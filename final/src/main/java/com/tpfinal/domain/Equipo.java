@@ -1,9 +1,11 @@
 package com.tpfinal.domain;
 
+import com.tpfinal.services.entrada.console.impl.InputService;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Equipo {
     private UUID id;
@@ -35,8 +37,30 @@ public class Equipo {
     public void addIntegrante(Jugador jugador){
         this.listaIntegrantes.add(jugador);
     }
+    public List<Jugador> getListaIntegrantesOrden(String orden){
+        Comparator<Jugador> comparator = Comparator.comparing(jugador -> jugador.getNombre());
+        switch (orden) {
+            case "C":
+                comparator = Comparator.comparing(jugador -> jugador.getNumeroCamiseta());
+                break;
+            case "P":
+                comparator = Comparator.comparing(jugador -> jugador.getPosicion().getPosicion());
+                break;
+
+        }
+
+        // comparator = comparator.thenComparing(Comparator.comparing(person -> person.age));
+
+        // Sort the stream:
+        Stream<Jugador> jugadorStream = listaIntegrantes.stream().sorted(comparator);
+
+        // Make sure that the output is as expected:
+        List<Jugador> sortedJugador = jugadorStream.collect(Collectors.toList());
+
+        return sortedJugador;
+    }
     public List<Jugador> getListaIntegrantes(){
-        return listaIntegrantes;
+        return getListaIntegrantesOrden("N");
     }
 
     public Entrenador getEntrenador() {

@@ -1,1 +1,3 @@
-nombreentrenador1;apellido1;equipo 1;52
+entrenador1;apellido1;EQUIPO 1;52
+entrenador2;apellido2;EQUIPO 2;45
+entrenador3;apellido3;EQUIPO 3;42

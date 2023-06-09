@@ -1,1 +1,8 @@
-jugador1;apellido1;equipo 1;121212;12;Arquero;0;0;false;1
+jugador1;apellido1;EQUIPO 1;121212;12;Arquero;0;0;TRUE;1
+jugador7;apellido7;EQUIPO 1;121212;12;Defensor;0;0;false;2
+jugador3;apellido3;EQUIPO 1;121212;12;Delantero;0;0;false;3
+jugador4;apellido4;EQUIPO 1;121212;12;Delantero;0;0;false;4
+jugador5;apellido5;EQUIPO 1;121212;12;Delantero;0;0;false;5
+jugador1;apellido1;EQUIPO 2;121212;12;Arquero;0;0;false;1
+jugador2;apellido2;EQUIPO 2;121212;12;Defensor;0;0;false;2
+jugador3;apellido3;EQUIPO 2;121212;12;Delantero;0;0;false;3

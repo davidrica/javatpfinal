@@ -24,8 +24,7 @@ public class MenuPrincipal implements Gui {
         System.out.println("=");
         System.out.println("=     0 - Terminar App");
         System.out.println("=     1 - Equipos");
-        System.out.println("=     2 - Jugadores");
-        System.out.println("=     3 - Entrenador");
+        System.out.println("=     2 - Integrantes");
         System.out.println("=     4 - Informes");
         System.out.println("=     5 - Importar - Exportar");
         System.out.println("");
