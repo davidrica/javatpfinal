@@ -9,7 +9,8 @@ public class Equipo {
     private UUID id;
     private String nombre;
     private LocalDate fechaCreacion;
-    private List<Integrante> listaIntegrantes = new ArrayList<>();
+    private List<Jugador> listaIntegrantes = new ArrayList<>();
+    private Entrenador entrenador = new Entrenador();
 
     public UUID getid(){
         return this.id;
@@ -31,12 +32,21 @@ public class Equipo {
        this.fechaCreacion=fechaCreacion;
     }
 
-    public void addIntegrante(Integrante integrante){
-        this.listaIntegrantes.add(integrante);
+    public void addIntegrante(Jugador jugador){
+        this.listaIntegrantes.add(jugador);
     }
-    public List<Integrante> getListaIntegrantes(){
+    public List<Jugador> getListaIntegrantes(){
         return listaIntegrantes;
     }
+
+    public Entrenador getEntrenador() {
+        return entrenador;
+    }
+
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
+    }
+
     @Override
     public String toString(){
         return "Equipo{" +

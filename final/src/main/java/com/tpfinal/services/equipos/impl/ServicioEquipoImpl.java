@@ -1,8 +1,10 @@
 package com.tpfinal.services.equipos.impl;
 
 import com.tpfinal.bootstrap.BootstrapData;
+import com.tpfinal.domain.Entrenador;
 import com.tpfinal.domain.Equipo;
 import com.tpfinal.domain.Integrante;
+import com.tpfinal.domain.Jugador;
 import com.tpfinal.services.entrada.console.impl.InputService;
 import com.tpfinal.services.equipos.ServicioEquipo;
 import com.tpfinal.services.gui.menuprincipal.MenuIntegrante;
@@ -26,17 +28,11 @@ public class ServicioEquipoImpl implements ServicioEquipo {
 
         Equipo equiponuevo = new Equipo();
 
-
-
         equiponuevo.setId(UUID.randomUUID());
-
 
         equiponuevo.setNombre(InputService.entradaCadena("=    INGRESE EL NOMBRE DEL EQUIPO: "));
 
         equiponuevo.setFechaCreacion( InputService.entradaFecha("=    INGRESE LA FECHA DE CREACION DD/MM/AAAA: "));
-
-
-
 
         if (equiponuevo!=null) {
             //validar equipo
@@ -48,16 +44,14 @@ public class ServicioEquipoImpl implements ServicioEquipo {
 
             do {
 
-                System.out.print("=    Desea Agregar integrantes? S/N: ");
+                System.out.print("=    Desea Agregar los Jugadores? S/N: ");
 
 
                 String agregarIntegrante = InputService.scanner.nextLine();
                 switch (agregarIntegrante) {
                     case "S":
                     case "s":
-
-
-                        Integrante integrante = servicioIntegrante.crearIntegrante(equiponuevo);
+                        Jugador jugador = servicioIntegrante.crearJugador(equiponuevo);
 
                         break;
                     default:
@@ -68,6 +62,9 @@ public class ServicioEquipoImpl implements ServicioEquipo {
             }while (Seguir);
 
 
+            Entrenador entrenador = servicioIntegrante.crearEntrenador(equiponuevo);
+
+            equiponuevo.setEntrenador(entrenador);
 
 
         }else{
@@ -85,10 +82,12 @@ public class ServicioEquipoImpl implements ServicioEquipo {
         if (equipos != null) {
             for (Equipo equipo : equipos) {
                 System.out.println(equipo.toString());
-                for (Integrante integrante: equipo.getListaIntegrantes()) {
-                    System.out.println(integrante.toString());
+                for (Jugador jugador: equipo.getListaIntegrantes()) {
+                    System.out.println(jugador.toString());
 
                 }
+                System.out.println(equipo.getEntrenador().toString());
+
             }
         }else{
             System.out.println("=     Sin Datos");
